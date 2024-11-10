@@ -7,7 +7,7 @@
     my_vaulted_token_details: "vaulted_token_details_ames.yml"
 
   vars_files:
-    - ./files/"{{ my_vaulted_token_details }}"
+    - ./files/{{ my_vaulted_token_details }}
 
   tasks:
 
