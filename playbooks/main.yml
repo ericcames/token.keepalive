@@ -1,0 +1,28 @@
+- name: Keep your tokens fresh
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  vars:
+    my_vaulted_token_details: "vaulted_token_details_ames.yml"
+
+  vars_files:
+    - ./files/"{{ my_vaulted_token_details }}"
+
+  tasks:
+
+    - name: Ensure we get an access token
+      loop: "{{ tokens }}"
+      register: access_token
+      until: access_token is not failed
+      retries: 5
+      delay: 20
+      ansible.builtin.uri:
+        url: "{{ item['url'] }}"
+        method: "{{ item['method'] }}"
+        body_format: "{{ item['body_format'] }}"
+        return_content: true
+        body:
+          grant_type: "{{ item['grant_type'] }}"
+          client_id: "{{ item['client_id'] }}"
+          refresh_token: "{{ offline_token }}"

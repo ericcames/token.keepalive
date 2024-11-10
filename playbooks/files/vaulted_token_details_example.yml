@@ -1,0 +1,14 @@
+---
+tokens:
+  - client_id: rhsm-api
+    url: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    method: post
+    body_format: form-urlencoded
+    grant_type: refresh_token
+    offline_token: OFFLINE_TOKEN_HERE
+  - client_id: cloud-services
+    url: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    method: post
+    body_format: form-urlencoded
+    grant_type: refresh_token
+    offline_token: OFFLINE_TOKEN_HERE
