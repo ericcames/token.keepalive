@@ -1,7 +1,7 @@
 - name: Keep your tokens fresh
   hosts: localhost
   connection: local
-  gather_facts: true
+  gather_facts: false
 
   vars:
     my_vaulted_token_details: "vaulted_token_details_ames.yml"
@@ -25,4 +25,4 @@
         body:
           grant_type: "{{ item['grant_type'] }}"
           client_id: "{{ item['client_id'] }}"
-          refresh_token: "{{ offline_token }}"
+          refresh_token: "{{ item['offline_token'] }}"
